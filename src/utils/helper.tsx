@@ -1,0 +1,1 @@
+export const pxToRem = (pixels: number): string => `${pixels * 0.0625}rem`;
