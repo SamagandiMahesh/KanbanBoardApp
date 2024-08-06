@@ -1,6 +1,7 @@
 export const COLORS = {
-    GRAY : '#e6e6e6',
+    GRAY : '#F4F5F8',
     WHITE  : '#FFFFFF',
+    DARKGRAY: '#282A31',
     BLACK:  '#000000',
-    LIGHTGRAY: '#cececf'
+    LIGHTGRAY: '#6B6F77'
 }

@@ -1,10 +1,11 @@
-import React, { FC, useState, useEffect, useCallback } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { DropDownProps, DropdownItem } from "./DropDown.types";
 import {
   StyledDropDown,
   StyledDropDownMenu,
   StyledDropDownButton,
 } from "./DropDown.styles";
+import { ICONS } from "../../utils";
 
 export const DropDown: FC<DropDownProps> = ({
   title = "Select",
@@ -19,14 +20,12 @@ export const DropDown: FC<DropDownProps> = ({
     data.find((item) => item.id === selectedId)
   );
 
-  const handleChange = useCallback(
-    (item: DropdownItem) => {
+  const handleChange = (item: DropdownItem) => {
       setSelectedItem(item);
       onSelect?.(item.id);
       setIsOpen(false);
-    },
-    [onSelect]
-  );
+    };
+    
 
   useEffect(() => {
     const newSelectedItem = data.find((item) => item.id === selectedId);
@@ -43,7 +42,7 @@ export const DropDown: FC<DropDownProps> = ({
           <span>{selectedItem?.name || title}</span>
 
           <img
-            src="../../icons/down.svg"
+            src={ICONS.DOWN}
             alt="icon"
             className={`downIcon ${isOpen ? "rotateIcon" : ""}`}
           />

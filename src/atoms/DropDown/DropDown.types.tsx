@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { GroupBy, SortBy } from "../../organisms/Board/Board.types";
 
 export type DropDownProps = {
     title?: string;
@@ -11,6 +12,6 @@ export type DropDownProps = {
 
 
 export type DropdownItem  = {
-    id: string;
+    id: GroupBy | SortBy;
     name: string;
   }

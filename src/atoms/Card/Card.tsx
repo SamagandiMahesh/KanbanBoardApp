@@ -4,5 +4,5 @@ import { StyledCard } from "./Card.styles";
 
 export const Card: FC<CardProps> = (props: CardProps) => {
   const {children} = props;
-  return <StyledCard>{children}</StyledCard>;
+  return <StyledCard className='card'>{children}</StyledCard>;
 };

@@ -1,42 +1,71 @@
 import React, { FC } from "react";
 import { TicketListProps } from "./TicketList.types";
-import { StyledTicketList } from "./TicketList.styles";
-import { Card } from "../../atoms";
-import { PRIORITY_ICON } from "../../utils";
+import {
+  StyledTicketList,
+  StyledCard,
+  CardHeader,
+  CardFooter,
+  CardId,
+  CardTitle,
+  CardStatus,
+  TicketUser,
+  TicketPriority,
+  TicketTag,
+  FeatureIcon,
+  FeatureLabel,
+} from "./TicketList.styles";
+import { Card, Icon } from "../../atoms";
+import { PRIORITY_ICON, STATUS_ICON } from "../../utils";
+import { GroupBy } from "../../organisms/Board/Board.types";
 
-export const TicketList: FC<TicketListProps> = ({ ticketList }) => {
+export const TicketList: FC<TicketListProps> = ({
+  ticketList,
+  selectedGroup,
+}) => {
   return (
     <StyledTicketList>
-      {ticketList.map((ticket) => (
+      {ticketList?.map((ticket) => (
         <Card key={ticket.id}>
-          <div className="card-header">
-            <div>
-              <h4 className="card-id"> {ticket.id}</h4>
-              <p className="card-title"> {ticket.title}</p>
-            </div>
-            <div className="ticket-user">
-              <img  className="avatar" src="./icons/Done.svg" alt="" />
-              <div  className="availability-icon available" />
-            </div>
-           
-          </div>
-          <div className="card-footer">
-            <div className="ticket-tag">
-              <img
-                className="priority-icon"
-                src={PRIORITY_ICON[ticket.priority]}
-                alt={`Priority level ${ticket.priority}`}
-              />
-            </div>
-            <div className="ticket-tag">
-              {ticket.tag.map((tag, index) => (
-                <div>
-                  <img src="/icons/To-do.svg" alt={tag} />
-                  <span key={index}>{tag}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <StyledCard>
+            <CardHeader>
+              <div>
+                <CardId>{ticket.id} </CardId>
+
+                <CardStatus className="card-status">
+                  {selectedGroup !== GroupBy.STATUS && (
+                    <Icon
+                      icon={STATUS_ICON[ticket.status]}
+                      available={false}
+                    />
+                  )}
+                  <CardTitle> {ticket.title}</CardTitle>
+                </CardStatus>
+              </div>
+              {selectedGroup !== GroupBy.USER_ID && (
+                <TicketUser>
+                  <Icon icon="" available={ticket.user.available} />
+                </TicketUser>
+              )}
+            </CardHeader>
+            <CardFooter>
+              {selectedGroup !== GroupBy.PRIORITY && (
+                <TicketTag>
+                  <Icon
+                    icon={PRIORITY_ICON[ticket.priority]}
+                    available={false}
+                  />
+                </TicketTag>
+              )}
+              <>
+                {ticket.tag.map((tag, index) => (
+                  <TicketTag key={index} className="ticket-tag">
+                    <FeatureIcon className="feature-icon"></FeatureIcon>
+                    <FeatureLabel className="feature-label">{tag}</FeatureLabel>
+                  </TicketTag>
+                ))}
+              </>
+            </CardFooter>
+          </StyledCard>
         </Card>
       ))}
     </StyledTicketList>
