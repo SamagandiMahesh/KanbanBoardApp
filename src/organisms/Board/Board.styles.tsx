@@ -48,7 +48,7 @@ export const StyledDisplayList = styled(FlexContainer)`
 
 
 export const StyledBoardRow = styled.div<BoardRowProps>`
-  display: grid;
+   display: grid;
   grid-auto-columns: minmax(0, 1fr);
   grid-auto-flow: column;
   column-gap: ${pxToRem(30)};
@@ -60,26 +60,60 @@ export const StyledBoardRow = styled.div<BoardRowProps>`
   }
 `;
 
+export const StyledBoardColumm = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
 export const StyledColumnHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: ${pxToRem(16)} 0;
   font-size: ${pxToRem(16)};
+  min-height: ${pxToRem(40)};
+  width: 100%;
+
   .column-title,
   .column-action-icons {
     label {
       padding: 0 ${pxToRem(12)};
     }
-  }
 
-  @media (max-width: 768px) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      label {
+        padding: 0 ${pxToRem(8)};
+        font-size: ${pxToRem(14)};
+      }
+    }
+
+    @media (max-width: 768px) {
     .column-title,
     .column-action-icons {
       margin-bottom: ${pxToRem(8)};
     }
+  }
 
-    .column-action-icons {
+  .column-action-icons {
       justify-content: flex-end;
     }
   }
+`;
+
+export const CenteredContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+`;
+
+export const LoadingMessage = styled(CenteredContainer)`
+  font-size: 1.5rem;
+  color: #666;
+`;
+
+export const ErrorMessage = styled(CenteredContainer)`
+  font-size: 1.5rem;
+  color: red;
 `;

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import { DropDownProps, DropdownItem } from "./DropDown.types";
 import {
   StyledDropDown,
@@ -6,6 +6,7 @@ import {
   StyledDropDownButton,
 } from "./DropDown.styles";
 import { ICONS } from "../../utils";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 export const DropDown: FC<DropDownProps> = ({
   title = "Select",
@@ -34,8 +35,14 @@ export const DropDown: FC<DropDownProps> = ({
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useOutsideClick({
+    ref: dropdownRef,
+    handler: () => setIsOpen(false),
+  });
+
   return (
-    <StyledDropDown>
+    <StyledDropDown ref={dropdownRef}>
       <div>
         <StyledDropDownButton onClick={toggleDropdown}>
           {icon && <img src={icon} alt="icon" className="" />}

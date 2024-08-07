@@ -9,7 +9,6 @@ import {
   CardTitle,
   CardStatus,
   TicketUser,
-  TicketPriority,
   TicketTag,
   FeatureIcon,
   FeatureLabel,

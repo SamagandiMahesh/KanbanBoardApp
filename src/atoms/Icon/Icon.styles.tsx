@@ -6,7 +6,7 @@ const statusVariants = {
     background:  ${COLORS.GREEN};
   `,
   offline: css`
-    background:  ${COLORS.DARKGRAY};;
+    background:  ${COLORS.LIGHTGRAY};;
   `,
 };
 

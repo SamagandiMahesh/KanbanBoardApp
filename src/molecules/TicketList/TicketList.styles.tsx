@@ -31,10 +31,13 @@ export const CardId = styled.p`
 
 export const CardTitle = styled.p`
   font-size:${pxToRem(14)};
-  color: #333;
+  color: ${COLORS.DARKGRAY};
+  overflow: hidden;
+  height: 50px;
 
   @media (max-width: 768px) {
     font-size: ${pxToRem(12)};
+    height: auto;
   }
 `;
 

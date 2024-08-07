@@ -1,11 +1,13 @@
-import React, { FC, useEffect, useState, useCallback, useMemo } from "react";
+import React, { FC, useEffect, useState, useCallback } from "react";
 import {
   BoardWrapper,
   BoardHeader,
   StyledDisplayList,
   StyledBoardRow,
+  StyledBoardColumm,
   StyledColumnHeader,
   ResponsiveContainer,
+  LoadingMessage, ErrorMessage
 } from "./Board.styles";
 import {
   BoardColumn,
@@ -126,14 +128,15 @@ export const Board: FC<BoardProps> = () => {
       sortGroupedTicketsBy("priority");
       updateUserColumn();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tickets, users]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingMessage>Loading...</LoadingMessage>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <ErrorMessage>Error: {error}</ErrorMessage>;
   }
 
   console.log(groupedTickets[selectedGroupBy]);
@@ -167,7 +170,7 @@ export const Board: FC<BoardProps> = () => {
       <main>
         <ResponsiveContainer>
           <StyledBoardRow
-            length={columns[selectedGroupBy as BoardColumnKey].length + 1}
+            length={columns[selectedGroupBy as BoardColumnKey].length}
           >
             {groupedTickets &&
               columns[selectedGroupBy as BoardColumnKey].map(
@@ -176,7 +179,7 @@ export const Board: FC<BoardProps> = () => {
                 ) => {
                   const { id, name, icon, available } = status;
                   return (
-                    <section key={id as string}>
+                    <StyledBoardColumm key={id as string}>
                       <StyledColumnHeader>
                         <div className="column-title">
                           <Icon
@@ -195,7 +198,7 @@ export const Board: FC<BoardProps> = () => {
                         ticketList={groupedTickets[id as string]}
                         selectedGroup={selectedGroupBy as GroupBy}
                       />
-                    </section>
+                    </StyledBoardColumm>
                   );
                 }
               )}

@@ -9,7 +9,6 @@ import {
   Status,
   StatusIconMap,
   StatusItem,
-  User,
 } from "../organisms/Board/Board.types";
 import { ICONS } from "./icons";
 
@@ -28,7 +27,6 @@ export const GROUPBY: DropdownItem[] = [
   },
 ];
 
-// Update SORTBY constant
 export const SORTBY: DropdownItem[] = [
   {
     id: SortBy.TITLE,
