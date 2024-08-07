@@ -4,27 +4,33 @@ import { COLORS, pxToRem } from "../../utils";
 export const StyledDropDown = styled.section`
   font-size: ${pxToRem(16)};
   position: relative;
+  @media (max-width: 768px) {
+    font-size: ${pxToRem(14)};
+  }
 `;
 
 export const StyledDropDownButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 120px;
+  min-width: ${pxToRem(120)};
   padding: ${pxToRem(8)};
-  border: 1px solid ${COLORS.GRAY};
+  border: 1px solid ${COLORS.LIGHTGRAY};
   cursor: pointer;
   background: ${COLORS.WHITE};
-  border-radius: ${pxToRem(6)};
+  border-radius: ${pxToRem(8)};
 
   span {
-  text-align:  left;
+    text-align: left;
   }
   .downIcon {
     transition: transform 0.5s ease-in-out;
   }
   .rotateIcon {
     transform: rotate(180deg);
+  }
+    @media (max-width: 768px) {
+    font-size: ${pxToRem(14)};
   }
 `;
 
@@ -38,14 +44,14 @@ export const StyledDropDownMenu = styled.div`
   position: absolute;
   background: ${COLORS.WHITE};
   border-radius: ${pxToRem(6)};
-      min-width: 100%;
 
   li {
     padding: ${pxToRem(8)};
     list-style: none;
+    width: ${pxToRem(120)};
 
     &:hover {
-      background: ${COLORS.GRAY};
+      background: ${COLORS.DARKGRAY};
       color: ${COLORS.WHITE};
       cursor: pointer;
     }

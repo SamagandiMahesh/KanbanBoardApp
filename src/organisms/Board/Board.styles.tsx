@@ -2,30 +2,21 @@ import styled from "styled-components";
 import { COLORS, pxToRem } from "../../utils";
 import { BoardRowProps } from "./Board.types";
 
-// Common Flex Container
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
 `;
 
-// Common Padding
-const PaddingContainer = styled.div<{ padding?: string }>`
-  padding: ${({ padding }) => padding || `${pxToRem(16)}`};
-`;
-
-// Responsive Container
 export const ResponsiveContainer = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 `;
 
-// Board Wrapper
 export const BoardWrapper = styled.article`
-  background-color: ${COLORS.GRAY};
+  background: ${COLORS.GRAY};
 `;
 
-// Board Header
 export const BoardHeader = styled.header`
   background: ${COLORS.WHITE};
   display: flex;
@@ -35,7 +26,7 @@ export const BoardHeader = styled.header`
 
   @media (max-width: 768px) {
     height: ${pxToRem(40)};
-    padding: ${pxToRem(8)};
+    padding: ${pxToRem(16)};
   }
   
   > section {
@@ -45,28 +36,17 @@ export const BoardHeader = styled.header`
    }
 `;
 
-
-// Display List
 export const StyledDisplayList = styled(FlexContainer)`
   justify-content: space-between;
   padding: ${pxToRem(8)} ${pxToRem(16)};
 
   span {
-    width: ${pxToRem(100)};
+    min-width: ${pxToRem(100)};
   }
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-
-    span {
-      width: 100%;
-      margin-bottom: ${pxToRem(8)};
-    }
-  }
 `;
 
-// Board Row
+
 export const StyledBoardRow = styled.div<BoardRowProps>`
   display: grid;
   grid-auto-columns: minmax(0, 1fr);
@@ -83,16 +63,16 @@ export const StyledBoardRow = styled.div<BoardRowProps>`
 export const StyledColumnHeader = styled.div`
   display: flex;
   justify-content: space-between;
-   padding: ${pxToRem(16)} 0;
+  padding: ${pxToRem(16)} 0;
+  font-size: ${pxToRem(16)};
   .column-title,
   .column-action-icons {
     label {
-      padding: 0 ${pxToRem(10)};
+      padding: 0 ${pxToRem(12)};
     }
   }
 
   @media (max-width: 768px) {
-
     .column-title,
     .column-action-icons {
       margin-bottom: ${pxToRem(8)};

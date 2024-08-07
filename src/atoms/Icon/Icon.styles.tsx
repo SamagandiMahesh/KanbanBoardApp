@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components";
+import { COLORS, pxToRem } from "../../utils";
 
 const statusVariants = {
   online: css`
-    background: green;
+    background:  ${COLORS.GREEN};
   `,
   offline: css`
-    background: gray;
+    background:  ${COLORS.DARKGRAY};;
   `,
 };
 
@@ -19,11 +20,11 @@ export const Avatar = styled.div<{ backgroundColor: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
+  border-radius: ${pxToRem(16)};
   background: ${({ backgroundColor }) => backgroundColor};
-  font-size: 12px;
-   width: 20px;
-  height: 20px;
+  font-size: ${pxToRem(12)};
+   width: ${pxToRem(20)};
+  height: ${pxToRem(20)};
 `;
 
 export const Icon = styled.div`
@@ -36,12 +37,12 @@ export const AvailabilityIcon = styled.div`
   position: absolute;
   bottom: -3px;
   right: -3px;
-  border: 1px solid white;
+  border: 1px solid  ${COLORS.WHITE};;
 `;
 
 export const StatusIcon = styled.div<{ status: keyof typeof statusVariants }>`
-  width: 6px;
-  height: 6px;
-  border-radius: 6px;
+  width: ${pxToRem(8)};
+  height: ${pxToRem(8)};
+  border-radius:${pxToRem(8)};
   ${({ status }) => statusVariants[status]}
 `;
